@@ -12,7 +12,6 @@
 
 // Code:
 
-import java.math.BigInteger;
 import java.util.Scanner;
 
 public class TotalEnergyEmitted {
@@ -20,10 +19,7 @@ public class TotalEnergyEmitted {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         // Calculate total energy using the formula n(n + 1) / 2
-        BigInteger totalEnergy = BigInteger.valueOf(n)
-                                .multiply(BigInteger.valueOf(n + 1))
-                                .divide(BigInteger.valueOf(2));
-        
+        long totalEnergy = (long) n * (n + 1) / 2;        
         System.out.println(totalEnergy);
         sc.close();
     }
