@@ -2,51 +2,33 @@
 
 // Example: 1. Input: 1C0C1C1A0B1
 //    Output: 1
-
 // Example: 2 Input: 0A1B1C1
 //    Output: 0
-
 // Example: 3 Input: 1
 //    Output: 1
-
 // Example: 4 Input: NULL
 //    Output: -1
-
-
 // Code:
-
 import java.util.*;
 
 public class CalculateBinaryResult {
-    public static int calculateBinaryResult(String input) {
-        if (input == null || input.isEmpty()) {
-            return -1; // Return -1 for NULL or empty input
+
+    public static int calculateBinaryResult(String str) {
+        if (str == null || str.isEmpty()) {
+            return -1;
         }
-
-        String[] tokens = input.split("(?=[ABC])|(?<=[ABC])"); // We split the input string into tokens based on the operation codes
-        // (?=[ABC])|(?<=[ABC]) is a regex that splits the string at positions where there is an 'A', 'B', or 'C' either before or after the split point.
-        int result = Integer.parseInt(tokens[0]); // Initialize result with the first binary digit
-
-        for (int i = 1; i < tokens.length; i += 2) {
-            char operation = tokens[i].charAt(0); // Get the operation code
-            int nextValue = Integer.parseInt(tokens[i + 1]); // Get the next binary digit
-
-            switch (operation) {
-                case 'A': // AND
-                    result = result & nextValue;
-                    break;
-                case 'B': // OR
-                    result = result | nextValue;
-                    break;
-                case 'C': // XOR
-                    result = result ^ nextValue;
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid operation code: " + operation);
+        int result = str.charAt(0) - '0'; // Initialize result with the first binary digit
+        for (int i = 1; i < str.length(); i += 2) {
+            char op = str.charAt(i);
+            if (op == 'A') {
+                result = result & (str.charAt(i + 1) - '0');
+            } else if (op == 'B') {
+                result = result | (str.charAt(i + 1) - '0');
+            } else if (op == 'C') {
+                result = result ^ (str.charAt(i + 1) - '0');
             }
         }
-
-        return result; // Return the final binary result
+        return result;
     }
 
     public static void main(String[] args) {
