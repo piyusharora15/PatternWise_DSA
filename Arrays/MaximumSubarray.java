@@ -22,86 +22,79 @@ Input: nums = [5,4,-1,7,8]
 Output: 23
 Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.
 
-*/
+ */
 
 // Approach 1: Brute Force.
 // We can use two nested loops to generate all possible subarrays and calculate their sums, keeping track of the maximum sum found. This approach has a time complexity of O(n^2).
 
-// Approach 2: Kadane's Algorithm.
-// We can use Kadane's algorithm, which runs in O(n) time. 
-// The idea is to iterate through the array while keeping track of the current subarray sum and the maximum sum found so far. 
-// If the current subarray sum becomes negative, we reset it to zero.We also update the maximum sum whenever we find a new maximum.We can implement this as follows:
-// -> We initialize two variables, currentSum and maxSum, to the first element of the array.
-// -> We iterate through the array starting from the second element. For each element, we update currentSum by taking the maximum of the current element and the sum of currentSum and the current element. This step decides whether to start a new subarray at the current element or to continue the existing subarray.
-// -> We then update maxSum to be the maximum of maxSum and currentSum.
-// -> Finally, we return maxSum as the result.
+/* Approach 2: Kadane's Algorithm (Way 1).
 
-// Code Implementation:
+-> We start by initializing two variables: maxSum and currentSum.
+   
+   maxSum represents the maximum sum encountered so far and is initially set to the minimum possible integer value to ensure that any valid subarray sum will be greater than it.
+   
+   currentSum represents the current sum of the subarray being considered and is initially set to 0.
+
+We iterate through the nums array using a for loop, starting from the first element and going up to the last element.
+
+For each element in the array, we add it to the current sum 'currentSum'. This calculates the sum of the subarray ending at the current element.
+
+Next, we check if the 'currentSum' is greater than the current maximum sum 'maxSum'.
+
+If it is, we update 'maxSum' with the new value of 'currentSum'. This means we have found a new maximum subarray sum.
+
+If the current sum 'currentSum' becomes negative, it indicates that including the current element in the subarray would reduce the overall sum. 
+In such cases, we reset 'currentSum' to 0. This effectively discards the current subarray and allows us to start a fresh subarray from the next element.
+
+We repeat steps 3 to 5 for each element in the array.
+
+After iterating through the entire array, the variable 'maxSum' will contain the maximum subarray sum encountered.
+
+Finally, we return the value of 'maxSum' as the result, representing the maximum sum of a contiguous subarray within the given array nums.
+
+*/
+
+// Code:
+
+
+/*
+
+public int maxSubArray(int[] nums) {
+        int maxSum = Integer.MIN_VALUE;
+        int currentSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+            
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+            }
+            
+            if (currentSum < 0) {
+                currentSum = 0;
+            }
+        }
+        
+        return maxSum;
+    }
+
+ */
+
+// Kadane's Algorithm (Way 2).
 
 class MaximumSubarray {
+
     public int maxSubArray(int[] nums) {
         int currentSum = nums[0];
         int maxSum = nums[0];
-        
+
         for (int i = 1; i < nums.length; i++) {
             currentSum = Math.max(nums[i], currentSum + nums[i]);
             maxSum = Math.max(maxSum, currentSum);
         }
-        
+
         return maxSum;
     }
 }
 
 // Time Complexity: O(n), where n is the length of the input array.
 // Space Complexity: O(1), as we are using only a constant amount of extra space.
-
-// Approach 3: Divide and Conquer.
-// We can also solve this problem using a divide and conquer approach, which has a time complexity of O(n log n).
-// The idea is to divide the array into two halves, recursively find the maximum subarray sum in each half, and then find the maximum subarray sum that crosses the midpoint. The final result will be the maximum of these three values. However, this approach is less efficient than Kadane's algorithm for this problem.
-
-// Code Implementation for Divide and Conquer:
-
-/*
-class MaximumSubarray {
-    public int maxSubArray(int[] nums) {
-        return maxSubArrayHelper(nums, 0, nums.length - 1);
-    }
-    
-    private int maxSubArrayHelper(int[] nums, int left, int right) {
-        if (left == right) {
-            return nums[left];
-        }
-        
-        int mid = left + (right - left) / 2;
-        
-        int leftMax = maxSubArrayHelper(nums, left, mid);
-        int rightMax = maxSubArrayHelper(nums, mid + 1, right);
-        int crossMax = maxCrossingSum(nums, left, mid, right);
-        
-        return Math.max(Math.max(leftMax, rightMax), crossMax);
-    }
-    
-    private int maxCrossingSum(int[] nums, int left, int mid, int right) {
-        int sum = 0;
-        int leftSum = Integer.MIN_VALUE;
-        
-        for (int i = mid; i >= left; i--) {
-            sum += nums[i];
-            leftSum = Math.max(leftSum, sum);
-        }
-        
-        sum = 0;
-        int rightSum = Integer.MIN_VALUE;
-        
-        for (int i = mid + 1; i <= right; i++) {
-            sum += nums[i];
-            rightSum = Math.max(rightSum, sum);
-        }
-        
-        return leftSum + rightSum;
-    }
-}
-*/
-
-// Time Complexity: O(n log n), where n is the length of the input array.
-// Space Complexity: O(log n) due to recursive stack space.
