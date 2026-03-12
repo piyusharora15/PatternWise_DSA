@@ -27,9 +27,9 @@ Input: [7,7,7,7]
 Output: [7,7,7,7]
 
 
-*/
+ */
 
-/*
+ /*
 Approach:
 A tower is a Guardian Tower (Leader) if no element to its right is greater than it.
 Important observations:
@@ -65,26 +65,24 @@ Correct order:
 
 17 5 2
 
-*/
-
-
+ */
 // Code:
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class LeadersInArray {
-     public static void findLeaders(int[] arr) {
+
+    public static void findLeaders(int[] arr) {
 
         int n = arr.length;
         ArrayList<Integer> leaders = new ArrayList<>();
 
-        int maxRight = arr[n-1];
+        int maxRight = arr[n - 1];
         leaders.add(maxRight);
 
-        for(int i = n-2; i >= 0; i--){
-            if(arr[i] >= maxRight){
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] >= maxRight) {
                 maxRight = arr[i];
                 leaders.add(arr[i]);
             }
@@ -93,6 +91,18 @@ public class LeadersInArray {
         Collections.reverse(leaders);
 
         System.out.println(leaders);
+        /*
+        
+        System.out.print("[");
+        for(int i = 0; i < leaders.size(); i++){
+          System.out.print(leaders.get(i));
+          if(i != leaders.size()-1){
+          System.out.print(",");
+        }
+     }
+      System.out.print("]");
+        
+         */
     }
 
     public static void main(String[] args) {
@@ -101,13 +111,13 @@ public class LeadersInArray {
 
         String input = sc.nextLine();
 
-        input = input.replace("[","").replace("]","");
+        input = input.replace("[", "").replace("]", "");
 
         String[] parts = input.split(",");
 
         int[] arr = new int[parts.length];
 
-        for(int i = 0; i < parts.length; i++){
+        for (int i = 0; i < parts.length; i++) {
             arr[i] = Integer.parseInt(parts[i].trim());
         }
 
