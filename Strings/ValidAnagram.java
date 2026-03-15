@@ -1,9 +1,23 @@
 // Problem Link: https://leetcode.com/problems/valid-anagram
 
+/*
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+Example 1:
+Input: s = "anagram", t = "nagaram"
+Output: true
+
+Example 2:
+Input: s = "rat", t = "car"
+Output: false
+
+*/
+
 // Approach 1: Sorting.
 // We can sort both strings and compare them. If they are equal after sorting, they are anagrams.
 
-// Code:
+/* Code:
 class Solution {
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length()) return false;
@@ -15,6 +29,8 @@ class Solution {
     }
 }
 
+*/
+
 // Time Complexity: O(n log n) due to sorting.
 // Space Complexity: O(1) if we ignore the space used for sorting.
 
@@ -22,7 +38,7 @@ class Solution {
 // We can count the frequency of each character in both strings and compare the counts.
 
 // Code:
-class Solution {
+class ValidAnagram {
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length()) return false;
         int[] count = new int[26];
