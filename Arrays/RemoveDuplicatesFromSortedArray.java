@@ -34,20 +34,16 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 // Code:
 class RemoveDuplicatesFromSortedArray {
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
-        
-        int uniqueCount = 1; // Start with the first element as unique
-        
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] != nums[uniqueCount - 1]) {
-                nums[uniqueCount] = nums[i]; // Move the unique element to the correct position
-                uniqueCount++; // Increment the count of unique elements
+        int n = nums.length;
+        if(n == 0) return 0;
+        int i = 0;
+        for(int j=1;j<n;j++) {
+            if(nums[j] != nums[i]) {
+                i++;
+                nums[i] = nums[j];
             }
         }
-        
-        return uniqueCount; // Return the number of unique elements
+        return i+1;
     }
 }
 
