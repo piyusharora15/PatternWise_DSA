@@ -4,7 +4,7 @@
 // For each letter, 'a' to 'z', check if it is present in the string.
 // If any letter is missing, return false. Otherwise, return true.
 
-// Code:
+/*  Code:
 class Solution {
     public boolean checkIfPangram(String sentence) {
         for(char ch='a';ch<='z';ch++){
@@ -20,6 +20,8 @@ class Solution {
         return true;
     }
 }
+*/
+
 
 // Time Complexity: O(N*26) ~ O(N), where N is the length of the sentence.
 // Space Complexity: O(1), as we are using a constant amount of extra space.
@@ -28,8 +30,8 @@ class Solution {
 // Create a boolean array of size 26 to track the presence of each letter.
 // Iterate through the string and mark the corresponding index in the array as true.
 
-// Code:
-class Solution {
+/*  Code:
+class PangramString {
     public boolean checkIfPangram(String sentence) {
         boolean[] seen = new boolean[26];
         for(char c : sentence.toCharArray()){
@@ -41,6 +43,7 @@ class Solution {
         return true;
     }
 }
+*/
 
 // Time Complexity: O(N), where N is the length of the sentence.
 // Space Complexity: O(1), as the size of the boolean array is constant (26).
@@ -49,7 +52,9 @@ class Solution {
 // Use a HashSet to store unique letters from the string. Check if the size of the set is 26 at the end.
 
 // Code:
-class Solution {
+import java.util.HashSet;
+import java.util.Set;
+class PangramString {
     public boolean checkIfPangram(String sentence) {
         Set<Character> st = new HashSet<>();
         for(char c : sentence.toCharArray()){
@@ -58,6 +63,7 @@ class Solution {
         return st.size() == 26;
     }
 }
+
 
 // Time Complexity: O(N), where N is the length of the sentence.
 // Space Complexity: O(1), as the maximum size of the HashSet is 26.
