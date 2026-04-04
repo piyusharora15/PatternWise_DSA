@@ -20,7 +20,8 @@ Explanation: You need to reduce multiple spaces between two words to a single sp
 
 */
 
-// Brute Force Approach: Manually parse the string 's' character by character to identify words, store them in a list, and then construct the result by reversing the order of words while ensuring single spaces between them.
+// Brute Force Approach: 
+// Manually parse the string 's' character by character to identify words, store them in a list, and then construct the result by reversing the order of words while ensuring single spaces between them.
 
 /* Code:
 
@@ -64,7 +65,7 @@ class Solution {
 // Optimal Approach: Two Pointer Technique to reverse the entire string and then reverse each word individually in place, while also handling spaces appropriately.
 // Convert the string to a character array for in-place manipulation. Clean up spaces, reverse the entire array, and then reverse each word.
 
-// Code:
+/*  Code:
 class ReverseWordsInString {
     public String reverseWords(String s) {
         char[] chars = s.toCharArray();
@@ -92,5 +93,44 @@ class ReverseWordsInString {
     }
 }
 
+*/
+
 // Time Complexity: O(n) where n is the length of the string s.
 // Space Complexity: O(1) since we are manipulating the string in place.
+
+/*
+
+Optimal Approach 2:
+
+I’ll iterate through the string, extract words, store them, reverse the list, and join them with a single space.
+
+*/
+
+// Code:
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class ReverseWordsInString {
+    public String reverseWords(String s) {
+        List<String> words = new ArrayList<>();
+        int i = 0;
+        int n = s.length();
+        while(i < n) {
+            // skip spaces
+            while(i < n && s.charAt(i) == ' ') i++;
+            if(i < n) {
+                int j = i;
+                // find word end
+                while(j < n && s.charAt(j) != ' ') j++;
+                words.add(s.substring(i, j));
+                i = j;
+            }
+        }
+        Collections.reverse(words);
+        return String.join(" ", words);
+    }
+}
+
+// Time Complexity: O(n) where n is the length of the string s.
+// Space Complexity: O(m) where m is the number of words in the string s.
