@@ -2,6 +2,8 @@
 
 /*
 
+Companies -> Google, Facebook, Amazon, Microsoft, Apple.
+
 Given an array of integers, return the maximum sum for a non-empty subarray (contiguous elements) with at most one element deletion. 
 In other words, you want to choose a subarray and optionally delete one element from it so that there is still at least one element left and the sum of the remaining elements is maximum possible.
 
@@ -27,7 +29,7 @@ Constraints:
 1 <= arr.length <= 105
 -104 <= arr[i] <= 104
 
-*/
+ */
 
 /*
 
@@ -48,6 +50,7 @@ We iterate through the array once and maintain two variables representing our st
 maxNoDelete: The max sum ending at i without any deletions.
 
 Decision: Either extend the previous sum or start fresh at arr[i].
+
 maxNoDelete = Math.max(maxNoDelete + arr[i], arr[i])
 
 maxOneDelete: The max sum ending at i with exactly one deletion.
@@ -60,26 +63,25 @@ This means your sum is simply whatever the max sum was at i−1 without any dele
 
 maxOneDelete = Math.max(maxOneDelete + arr[i], prevMaxNoDelete)
 
-Complexity
-Time complexity:
-O(N) — We traverse the array exactly once.
+Complexity:
 
-Space complexity:
-O(1) — We only use three variables to track state, regardless of array size.
+Time complexity: O(N) — We traverse the array exactly once.
+
+Space complexity: O(1) — We only use three variables to track state, regardless of array size.
 
 Key Logic Summary:
 
 The Deletion Act: When we set maxOneDelete = prevNoDelete, we are mathematically "skipping" the current element arr[i].
 
-The Continuity: If we add arr[i] to maxOneDelete, we are saying, "I used my one allowed skip/delete somewhere in the past, so I have to take this current value.
+The Continuity: If we add arr[i] to maxOneDelete, we are saying, "I used my one allowed skip/delete somewhere in the past, so I have to take this current value."
 
 Why this works for Negative Numbers? 🛑
 
 By using oneDeleteMaxSum = Math.max(oneDeleteMaxSum + arr[i], prevNoDeleteMaxSum), we effectively "skip" a negative number if adding it would result in a sum lower than the sum we had before it. 
+
 This is why prevNoDeleteMaxSum acts as the perfect "delete" action.
 
 */
-
 
 class MaximumSubarraySumWithOneDeletion {
 
