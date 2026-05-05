@@ -101,7 +101,7 @@ Code:
 
 class Solution
 {
-    public Boolean isSubsetSumUtil(int arr[], int n, int sum, boolean[][] dp)
+    public Boolean isSubsetSumUtil(int arr[], int n, int sum, int[][] dp)
     {
         Base Cases
         if (sum == 0)
@@ -109,26 +109,28 @@ class Solution
         if (n == 0)
             return false;
         
-        if (dp[n][sum] != false)
-            return dp[n][sum];
+        if (dp[n][sum] != -1)
+            return dp[n][sum] == 1;
         
         If last element is greater than sum, then ignore it
         if (arr[n - 1] > sum)
-            return dp[n][sum] = isSubsetSumUtil(arr, n - 1, sum, dp);
+            dp[n][sum] = isSubsetSumUtil(arr, n - 1, sum, dp) ? 1 : 0;
 
         else, check if sum can be obtained by any of the following
            (a) excluding the last element
            (b) including the last element
-        return dp[n][sum] = isSubsetSumUtil(arr, n - 1, sum, dp) || isSubsetSumUtil(arr, n - 1, sum - arr[n - 1], dp);
+        else {
+        dp[n][sum] = isSubsetSumUtil(arr, n - 1, sum, dp) || isSubsetSumUtil(arr, n - 1, sum - arr[n - 1], dp) ? 1 : 0;
+}
+        return dp[n][sum] == 1;
     }
+
         public Boolean isSubsetSum(int arr[], int sum)
         {
             int n = arr.length;
-            boolean[][] dp = new boolean[n + 1][sum + 1];
-            for (int i = 0; i <= n; i++) {
-                for (int j = 0; j <= sum; j++) {
-                    dp[i][j] = false;
-                }
+            int[][] dp = new int[n + 1][sum + 1];
+            for (int[] row : dp) {
+            Arrays.fill(row, -1);
             }
             return isSubsetSumUtil(arr, n, sum, dp);
         }
