@@ -1,12 +1,34 @@
 // Problem Link : https://leetcode.com/problems/symmetric-tree
 
-// Approach 1 : Recursive DFS :
-// Check if the left and right subtrees are mirror images of each other
-// If both subtrees are null, return true
-// If one of the subtrees is null, return false
-// If the values of the root nodes are different, return false
-// Recursively check the left subtree of the left tree with the right subtree of the right tree
-// and the right subtree of the left tree with the left subtree of the right tree
+
+/*
+
+Companies: Amazon, Microsoft, Google, Facebook, Apple.
+
+Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+Example 1:
+Input: root = [1,2,2,3,4,4,3]
+Output: true
+
+Example 2:
+Input: root = [1,2,2,null,3,null,3]
+Output: false
+
+Approach 1 : Recursive DFS.
+
+First check if the root is null, if it is then return true as an empty tree is symmetric. 
+
+Then we can define a helper function isMirror that takes two nodes as input and checks if they are mirror images of each other. 
+
+The function should check if both nodes are null, if so return true. 
+If one of the nodes is null or their values are different, return false. 
+
+Finally, we can recursively call the function for the left child of the first node and the right child of the second node, and for the right child of the first node and the left child of the second node.
+
+We can call this helper function with the root node as both arguments to check if the tree is symmetric.
+
+Code:
 
 class Solution {
     public boolean isSymmetric(TreeNode root) {
@@ -19,15 +41,25 @@ class Solution {
     }
 }
 
-// Time Complexity : O(N) where N is the number of nodes in the tree
-// Space Complexity : O(H) where H is the height of the tree
+Time Complexity : O(N) where N is the number of nodes in the tree.
 
-// Approach 2 : Iterative BFS
-// Use a queue to perform a level-order traversal of the tree
-// At each step, compare the left and right children of the current node
-// If both children are null, continue to the next pair
-// If one of the children is null or their values are different, return false
-// Add the left and right children of both nodes to the queue
+Space Complexity : O(H) where H is the height of the tree.
+
+Approach 2 : Iterative BFS.
+
+First check if the root is null, if it is then return true as an empty tree is symmetric. 
+
+Then we can use a queue to perform a level order traversal of the tree. We can enqueue the left and right children of the root node.
+
+Then we can enter a loop that continues until the queue is empty. In each iteration, we can dequeue two nodes from the queue and check if they are mirror images of each other.
+
+If both nodes are null, we can continue to the next iteration. If one of the nodes is null or their values are different, we can return false.
+
+If the nodes are mirror images, we can enqueue the left child of the first node and the right child of the second node, and the right child of the first node and the left child of the second node.
+
+We can continue this process until the queue is empty. If we exit the loop without finding any asymmetry, we can return true.
+
+Code:
 
 class Solution {
     public boolean isSymmetric(TreeNode root) {
@@ -49,5 +81,8 @@ class Solution {
     }
 }
 
-// Time Complexity : O(N) where N is the number of nodes in the tree
-// Space Complexity : O(W) where W is the maximum width of the tree
+Time Complexity : O(N) where N is the number of nodes in the tree.
+
+Space Complexity : O(W) where W is the maximum width of the tree.
+
+*/
