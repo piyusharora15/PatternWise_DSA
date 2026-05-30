@@ -1,10 +1,36 @@
 // Problem Link : https://leetcode.com/problems/same-tree
 
-// Approach 1 : Recursive DFS :
-// If both nodes are null, return true
-// If one of the nodes is null, return false
-// If the values of the nodes are different, return false
-// Recursively check the left and right subtrees
+/*
+
+Companies: Amazon, Microsoft, Google, Facebook.
+
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+Example 1:
+Input: p = [1,2,3], q = [1,2,3]
+Output: true
+
+Example 2:
+Input: p = [1,2], q = [1,null,2]
+Output: false
+
+Example 3:
+Input: p = [1,2,1], q = [1,1,2]
+Output: false
+
+
+Approach 1 : Recursive DFS.
+
+First we check if both nodes are null, if they are then we return true. 
+
+If one of them is null or their values are not equal, then we return false. 
+Otherwise, we recursively check the left and right subtrees.
+
+Once we have checked all the nodes, if we haven't returned false, then we return true.
+
+Code:
 
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
@@ -14,15 +40,24 @@ class Solution {
     }
 }
 
-// Time Complexity : O(N) where N is the number of nodes in the tree
-// Space Complexity : O(H) where H is the height of the tree
+Time Complexity : O(N) where N is the number of nodes in the tree.
 
-// Approach 2 : Iterative BFS
-// Use a queue to perform a level-order traversal of both trees
-// At each step, compare the current nodes of both trees
-// If both nodes are null, continue to the next pair
-// If one of the nodes is null or their values are different, return false
-// Add the left and right children of both nodes to the queue
+Space Complexity : O(H) where H is the height of the tree.
+
+
+Approach 2 : Iterative BFS.
+
+First we initialize two queues, one for each tree. We add the root nodes of both trees to their respective queues.
+
+Then we enter a loop that continues until both queues are empty. In each iteration, we poll a node from each queue and compare them.
+
+If both nodes are null, we continue to the next iteration. 
+If one of them is null or their values are not equal, we return false.
+If they are equal, we add their left and right children to their respective queues.
+
+We continue this process until both queues are empty. If we haven't returned false by the end of the loop, then we return true.
+
+Code:
 
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
@@ -44,5 +79,8 @@ class Solution {
     }
 }
 
-// Time Complexity : O(N) where N is the number of nodes in the tree
-// Space Complexity : O(W) where W is the maximum width of the tree
+Time Complexity : O(N) where N is the number of nodes in the tree.
+
+Space Complexity : O(W) where W is the maximum width of the tree.
+
+*/
