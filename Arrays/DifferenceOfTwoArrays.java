@@ -1,6 +1,6 @@
-// Problem Link: https://leetcode.com/problems/find-the-difference-of-two-arrays?envType=problem-list-v2&envId=wh88bf73
-
 /*  
+
+Problem Link: https://leetcode.com/problems/find-the-difference-of-two-arrays?envType=problem-list-v2&envId=wh88bf73
 
 Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where: 
 answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
@@ -23,6 +23,7 @@ Every integer in nums2 is present in nums1. Therefore, answer[1] = [].
 
 
 Approach: Using HashSet.
+
 1. First, we will create two hash sets to store the distinct integers from nums1 and nums2.
 2. Then, we will iterate through nums1 and add each integer to the first hash set.
 3. Next, we will iterate through nums2 and add each integer to the second hash set.
@@ -33,6 +34,7 @@ Approach: Using HashSet.
 
 Dry Run:
 Input: nums1 = [1,2,3], nums2 = [2,4,6]
+
 1. Create two hash sets: set1 = {}, set2 = {}
 2. Iterate through nums1 and add each integer to set1: set1 = {1, 2, 3}
 3. Iterate through nums2 and add each integer to set2: set2 = {2, 4, 6}
@@ -48,9 +50,12 @@ Input: nums1 = [1,2,3], nums2 = [2,4,6]
 7. Create a list of lists to store the two lists: answer = [[1, 3], [4, 6]]
 
 
-Time Complexity: O(n + m), where n is the length of nums1 and m is the length of nums2. We iterate through both arrays to populate the hash sets and then iterate through the sets to find the distinct integers.
+Time Complexity: O(n + m), where n is the length of nums1 and m is the length of nums2. 
+We iterate through both arrays to populate the hash sets and then iterate through the sets to find the distinct integers.
 
-Space Complexity: O(n + m), where n is the number of distinct integers in nums1 and m is the number of distinct integers in nums2. We use hash sets to store the distinct integers, and the answer list can also contain up to n + m distinct integers in the worst case.
+Space Complexity: O(n + m), where n is the number of distinct integers in nums1 and m is the number of distinct integers in nums2. 
+We use hash sets to store the distinct integers, and the answer list can also contain up to n + m distinct integers in the worst case.
+
 
 */
 
