@@ -1,8 +1,10 @@
-// Problem Link: https://leetcode.com/problems/valid-anagram
-
 /*
 
+Problem Link: https://leetcode.com/problems/valid-anagram
+
 Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.
 
 Example 1:
 Input: s = "anagram", t = "nagaram"
@@ -12,11 +14,14 @@ Example 2:
 Input: s = "rat", t = "car"
 Output: false
 
+
 Approach 1: Sorting.
 
-1. First, we check if the lengths of the two strings are different. If they are, we can immediately return false since anagrams must have the same length.
+1. First, we check if the lengths of the two strings are different. 
+If they are, we can immediately return false since anagrams must have the same length.
 
-2. Next, we convert both strings to character arrays and sort them. If the sorted arrays are equal, then the original strings are anagrams of each other.
+2. Next, we convert both strings to character arrays and sort them. 
+If the sorted arrays are equal, then the original strings are anagrams of each other.
 
 3. Finally, we return the result of the comparison.
 
@@ -42,7 +47,8 @@ Space Complexity: O(1) if we ignore the space used for sorting.
 
 Approach 2: Counting Characters.    
 
-1. First, we check if the lengths of the two strings are different. If they are, we can immediately return false since anagrams must have the same length.
+1. First, we check if the lengths of the two strings are different. 
+If they are, we can immediately return false since anagrams must have the same length.
 
 2. Next, we create an array of size 26 to count the occurrences of each character in the strings (assuming only lowercase letters).
 
@@ -63,6 +69,7 @@ Space Complexity: O(1) since the size of the count array is fixed (26 for lowerc
 
 
 // Code:
+
 class ValidAnagram {
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length()) return false;
