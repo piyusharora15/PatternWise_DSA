@@ -18,21 +18,32 @@ Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
 The substring "BBBB" has the longest repeating letters, which is 4.
 There may exists other ways to achieve this answer too.
 
+
 Approach: Using Sliding Window Technique.
 
 1. Initialize a frequency array of size 26 to keep track of the count of each character in the current window.
+
 2. Use two pointers, left and right, to represent the current window in the string.
+
 3. Expand the right pointer to include new characters in the window and update their counts in the frequency array.
+
 4. Calculate the maximum frequency of any character in the current window.
+
 5. If the size of the current window minus the maximum frequency is greater than k, it means we need to shrink the window from the left to maintain the condition.
+
 6. Keep track of the maximum length of the window that satisfies the condition.
+
 7. Return the maximum length found.
 
 Dry Run:
+
 Input: s = "AABABBA", k = 1
+
 - Initialize frequency array: freq = [0, 0, ..., 0] (size 26)
 - Initialize left = 0, maxCount = 0, maxLength = 0  
+
 - Start iterating with right pointer:
+
   - right = 0, char = 'A', freq['A']++, maxCount = 1, window size = 1, maxLength = 1
   - right = 1, char = 'A', freq['A']++, maxCount = 2, window size = 2, maxLength = 2
   - right = 2, char = 'B', freq['B']++, maxCount = 2, window size = 3, maxLength = 3
@@ -42,8 +53,14 @@ Input: s = "AABABBA", k = 1
     - left = 1, char = 'A', freq['A']--, left++
     - Now window size is 3 (right - left + 1), maxLength remains 4
   - right = 5, char = 'B', freq['B']++, maxCount = 3, window size = 4, (4 - 3) <= k => maxLength remains 4
+  - right = 6, char = 'A', freq['A']++, maxCount = 3, window size = 5, (5 - 3) > k => shrink window
+    - left = 2, char = 'B', freq['B']--, left++
+    - Now window size is 4 (right - left + 1), maxLength remains 4
 
-Time Complexity: O(n), where n is the length of the string. Each character is processed at most twice (once when added to the window and once when removed).
+Return maxLength = 4
+
+Time Complexity: O(n), where n is the length of the string. 
+Each character is processed at most twice (once when added to the window and once when removed).
 
 Space Complexity: O(1), since the frequency array has a fixed size of 26 regardless of the input size.
 
